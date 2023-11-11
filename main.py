@@ -9,11 +9,10 @@ parameters = {
 
 response = requests.get(url="https://opentdb.com/api.php", params=parameters)
 response.raise_for_status()
-question_list = response.json()["results"]
-print(question_list)
+question_data = response.json()["results"]
 
 question_bank = []
-for question in question_list:
+for question in question_data:
     question_text = question["question"]
     question_answer = question["correct_answer"]
     new_question = Question(question_text, question_answer)
